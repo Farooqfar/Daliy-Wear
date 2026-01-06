@@ -61,7 +61,7 @@ export default function page() {
                     </td>
                     <td className="p-2">
                       <Link
-                        href={`edit/?id=${items}`}
+                        href={`edit/?id=${items._id}`}
                         className="cursor-pointer text-blue-600 underline"
                       >
                         edit

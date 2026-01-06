@@ -1,6 +1,7 @@
 "use client";
+import { api } from "@/app/lib/axios";
 import { useParams, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function page() {
   const params = useSearchParams();
@@ -19,6 +20,12 @@ export default function page() {
       [name]: type === "checkbox" ? checked : value,
     }));
   };
+  const fetch_data_from_id = async () => {
+    const data = await api.post("/editProduct", id);
+  };
+  useEffect(() => {
+    fetch_data_from_id();
+  }, []);
   const handleForm = (e) => {
     e.preventDefault();
     console.log(edit);
