@@ -8,6 +8,7 @@ export default function page() {
   const id = params.get("id");
   console.log(id);
   const [edit, setEdit] = useState({
+    id: "",
     name: "",
     description: "",
     price: "",
@@ -23,6 +24,7 @@ export default function page() {
   const fetch_data_from_id = async () => {
     const { data } = await api.post("/editProduct", { id });
     setEdit({
+      id: id,
       name: data.data[0].name,
       description: data.data[0].description,
       price: data.data[0].price,
@@ -31,11 +33,17 @@ export default function page() {
     console.log(edit.name);
   };
   useEffect(() => {
-    fetch_data_from_id();
-  }, []);
-  const handleForm = (e) => {
+    if (id) {
+      fetch_data_from_id();
+      setEdit((prev) => ({ ...prev, id }));
+    }
+  }, [id]);
+
+  const handleForm = async (e) => {
     e.preventDefault();
-    console.log(edit);
+
+    const send_data = await api.put("/editProduct", edit);
+    console.log(edit.id);
   };
   return (
     <>
