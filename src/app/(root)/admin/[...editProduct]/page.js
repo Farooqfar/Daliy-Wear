@@ -21,7 +21,14 @@ export default function page() {
     }));
   };
   const fetch_data_from_id = async () => {
-    const data = await api.post("/editProduct", id);
+    const { data } = await api.post("/editProduct", { id });
+    setEdit({
+      name: data.data[0].name,
+      description: data.data[0].description,
+      price: data.data[0].price,
+      sale: data.data[0].sale,
+    });
+    console.log(edit.name);
   };
   useEffect(() => {
     fetch_data_from_id();
