@@ -75,22 +75,12 @@ export default function page() {
         </section>
         <section className="w-full flex justify-center items-center gap-3 flex-wrap mt-5">
           <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
-          <Cards />
         </section>
         <section className="w-full flex justify-center items-center gap-3 flex-wrap mt-5">
           <h1 className="text-6xl uppercase text-[#E1380A] font-bold">
             Offers
           </h1>
           <div className="w-full flex justify-center items-center gap-3 flex-wrap">
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
-            <Cards />
             <Cards />
           </div>
         </section>
