@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-export default function Cards({ slug }) {
-  const [sale, setSale] = useState(true);
+export default function Cards({ name, des, price, image, sale }) {
+  const [sales, setSales] = useState(true);
   return (
     <>
       <section className="relative w-80 h-80 bg-gray-900 p-5 m-5 rounded max-md:w-full max-md:m-0">
@@ -14,17 +14,19 @@ export default function Cards({ slug }) {
         )}
 
         <div className="w-full h-44 flex justify-center items-center">
-          <Image
-            src="/pizza1.png"
-            alt="product"
-            width={100}
-            height={100}
-            className="w-52 h-full"
-          />
+          {image && (
+            <Image
+              src={image}
+              alt={"product"}
+              width={100}
+              height={100}
+              className="rounded-xl w-full h-full"
+            />
+          )}
         </div>
         <div className="w-full h-auto">
-          <h1 className="text-3xl">Orange</h1>
-          <p className="text-[#E1380A]">2999 PKR</p>
+          <h1 className="text-3xl">{name}</h1>
+          <p className="text-[#E1380A]">{price} PKR</p>
         </div>
         <div className="flex gap-3">
           <Link
@@ -34,7 +36,7 @@ export default function Cards({ slug }) {
             Add to cart
           </Link>
           <Link
-            href={`user/order/${slug}`}
+            href={`user/order/`}
             className="block w-full text-center rounded p-1 bg-[#E1380A] hover:bg-red-700 transition-all duration-300 ease-out mt-3"
           >
             Order Now

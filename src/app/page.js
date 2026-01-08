@@ -4,10 +4,22 @@ import Navbar from "./components/Navbar";
 import Link from "next/link";
 import Cards from "./components/Cards";
 import Cart from "./components/Cart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { api } from "./lib/axios";
 
 export default function page() {
   const [addCart, setaddcart] = useState(false);
+  const [item, setItem] = useState([]);
+  const fetch_items = async () => {
+    const res = await api.get("/editProduct");
+
+    setItem(res.data.data);
+  };
+  useEffect(() => {
+    fetch_items();
+  }, []);
+  console.log(item);
+
   return (
     <>
       <main className="w-full min-h-screen overflow-x-hidden  flex flex-col items-center p-5">
@@ -74,7 +86,18 @@ export default function page() {
           </div>
         </section>
         <section className="w-full flex justify-center items-center gap-3 flex-wrap mt-5">
-          <Cards />
+          {item?.map((items, index) => {
+            return (
+              <Cards
+                key={index}
+                name={items.name}
+                des={items.description}
+                price={items.price}
+                image={items.image}
+                sale={items.sale}
+              />
+            );
+          })}
         </section>
         <section className="w-full flex justify-center items-center gap-3 flex-wrap mt-5">
           <h1 className="text-6xl uppercase text-[#E1380A] font-bold">
